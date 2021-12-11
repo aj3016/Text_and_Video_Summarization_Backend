@@ -159,7 +159,7 @@ def take_summary():
         return "Please first find Summary"
     else:
         quiz_list = question_answers(summary)
-        return {"quiz":quiz_list}
+        return quiz_list
 
 if __name__ == "__main__":
    app.run(debug=True)

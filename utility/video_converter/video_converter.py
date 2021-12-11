@@ -4,10 +4,15 @@ import os
 from google.cloud import speech
 import wave
 from google.cloud import storage
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 dir_name = os.path.join(os.getcwd(),'static/Video')
 filepath =  os.path.join(dir_name + '/middle/')
 output_filepath =  os.path.join(dir_name + '/output/')
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.getenv('CLOUD_KEY')
 
 def frame_rate_channel(audio_file_name):
     with wave.open(audio_file_name, "rb") as wave_file:
