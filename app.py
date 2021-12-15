@@ -1,5 +1,6 @@
 import os
-from flask import Flask, request, redirect ,render_template
+from flask import Flask, request, redirect
+from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import pdfplumber
 import docx2txt
@@ -10,6 +11,8 @@ from utility.article_extractor.article_extractor import article_extractor
 from utility.video_converter.video_converter import video_convertor
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['UPLOAD_DOCUMENT_FOLDER'] = os.path.join(app.root_path,'static/Documents')
 app.config['ALLLOWED_DOCUMENT_EXTENSIONS'] = ["DOC", "DOCX", "TXT", "PDF"]
