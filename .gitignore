@@ -1,2 +1,6 @@
 .flask
 google_cloud_key.json
+utility/article_extractor/__pycache__/*.*
+utility/question_generation/__pycache__/*.*
+utility/summarization/__pycache__/*.*
+utility/video_converter/__pycache__/*.*
