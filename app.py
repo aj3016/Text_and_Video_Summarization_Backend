@@ -104,7 +104,7 @@ def take_document():
 @app.route('/text/article', methods=['POST'])
 def take_article():
     global summary
-    url = ratio = request.json['url']
+    url = request.json['url']
     ratio = request.json['compression_ratio']
     text = article_extractor(url)
     print(text)
