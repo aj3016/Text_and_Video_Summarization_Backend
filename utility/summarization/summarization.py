@@ -17,11 +17,11 @@ def lemmatize_words(words):
        lemmatized_words.append(wordlemmatizer.lemmatize(word))
     return lemmatized_words
 
-def stem_words(words):
+""" def stem_words(words):
     stemmed_words = []
     for word in words:
        stemmed_words.append(stemmer.stem(word))
-    return stemmed_words
+    return stemmed_words """
 
 def remove_special_characters(text):
     regex = r'[^a-zA-Z0-9\s]'
