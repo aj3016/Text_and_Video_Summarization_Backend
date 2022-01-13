@@ -154,7 +154,7 @@ def question_answers(summarized_text):
         choices = [each.capitalize()] + key_distractor_list[each]
         top4choices = choices[:4]
         random.shuffle(top4choices)
-        res.append({"question":output,"choice":top4choices,"answer":each})
+        res.append({"index":index,"question":output,"choice":top4choices,"answer":each})
         index = index + 1
     print(json.dumps(res, sort_keys=False, indent=4))
     return(json.dumps(res, sort_keys=False, indent=4))

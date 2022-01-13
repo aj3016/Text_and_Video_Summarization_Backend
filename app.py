@@ -23,11 +23,9 @@ app.config['READ_VIDEO_FOLDER'] = os.path.join(app.root_path,'static/Video/outpu
 app.config['VIDEO_MIDDLE_FOLDER'] = os.path.join(app.root_path,'static/Video/middle')
 app.config['ALLLOWED_VIDEO_EXTENSIONS'] = ["MP4"]
 
-summary = ""
-
 @app.route('/text/input', methods=['POST'])
 def take_input():
-    global summary
+    summary = ""
     input = request.json['inputText']
     ratio = request.json['compression_ratio']
     summary = summarizer(input, ratio)
@@ -44,7 +42,7 @@ def allowed_document(filename):
 
 @app.route('/text/document', methods=['GET', 'POST'])
 def take_document():
-    global summary
+    summary = ""
     if request.method == "POST":
         ratio = int(request.form.get('compression_ratio')) ##convert to JSON on frontend
         if request.files:
@@ -103,7 +101,7 @@ def take_document():
 
 @app.route('/text/article', methods=['POST'])
 def take_article():
-    global summary
+    summary = ""
     url = request.json['url']
     ratio = request.json['compression_ratio']
     text = article_extractor(url)
@@ -122,7 +120,7 @@ def allowed_videos(filename):
 
 @app.route('/video', methods=['GET', 'POST'])
 def take_video():
-    global summary
+    summary = ""
     if request.method == "POST":
         ratio = int(request.form.get('compression_ratio')) ##convert to JSON on frontend
         if request.files:
@@ -156,8 +154,9 @@ def take_video():
                 print("That file extension is not allowed")
                 return redirect(request.url)
 
-@app.route('/quiz', methods=['GET'])
+@app.route('/quiz', methods=['POST'])
 def take_summary():
+    summary = request.json['summary']
     if len(summary) < 1:
         return "Please first find Summary"
     else:
